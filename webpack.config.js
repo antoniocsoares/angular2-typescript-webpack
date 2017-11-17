@@ -1,5 +1,6 @@
-var webpack = require("webpack"),
-  path = require('path');
+const webpack = require("webpack"),
+  path = require('path'),
+  JscramblerWebpack = require('jscrambler-webpack-plugin');
 
 const ccpOptions = {
   name: 'vendor',
@@ -46,15 +47,14 @@ module.exports = {
       root('./src'), // location of your src
       { }
     ),
-
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
     }),
-
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      sourceMap: true
+    new JscramblerWebpack({
+      enable: true, // optional, defaults to true
+      chunks: ['app'], // optional, defaults to all chunks
+      // and other jscrambler configurations
     })
   ]
 }
