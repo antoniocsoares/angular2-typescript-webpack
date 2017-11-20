@@ -1,6 +1,5 @@
 const webpack = require("webpack"),
-  path = require('path'),
-  JscramblerWebpack = require('jscrambler-webpack-plugin');
+  path = require('path');
 
 const ccpOptions = {
   name: 'vendor',
@@ -27,7 +26,6 @@ module.exports = {
       'node_modules'
     ]
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -46,15 +44,6 @@ module.exports = {
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       root('./src'), // location of your src
       { }
-    ),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    }),
-    new JscramblerWebpack({
-      enable: true, // optional, defaults to true
-      chunks: ['app'], // optional, defaults to all chunks
-      // and other jscrambler configurations
-    })
+    )
   ]
 }
